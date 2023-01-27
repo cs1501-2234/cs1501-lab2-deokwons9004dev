@@ -33,26 +33,26 @@ provided upon calling the private __`menu()`__ method, which reads and returns u
 input ranging from `1` to `6`, as shown below:
 
 ```java
-	/**
-	 * Displays the program menu and read user selection.
-	 * Input values must be within the range of 1 ~ 6 (inclusive).
- 	 * @return A numeric choice value
-	 */
-	private int menu () {
-		System.out.println("*********************************");
-		System.out.println("Welcome to CS 1501 Persistent Tree Program!");
-		System.out.println("1. Read tree from a file");
-		System.out.println("2. Display inorder traversal of the tree");
-		System.out.println("3. Attach tree as left child to a new root");
-		System.out.println("4. Attach tree as right child to a new root");
-		System.out.println("5. Write tree to a file");
-		System.out.println("6. Exit.");
-		System.out.println("*********************************");
-		System.out.print("Please choose a menu option (1-6): ");
+/**
+ * Displays the program menu and read user selection.
+ * Input values must be within the range of 1 ~ 6 (inclusive).
+ * @return A numeric choice value
+ */
+private int menu () {
+	System.out.println("*********************************");
+	System.out.println("Welcome to CS 1501 Persistent Tree Program!");
+	System.out.println("1. Read tree from a file");
+	System.out.println("2. Display inorder traversal of the tree");
+	System.out.println("3. Attach tree as left child to a new root");
+	System.out.println("4. Attach tree as right child to a new root");
+	System.out.println("5. Write tree to a file");
+	System.out.println("6. Exit.");
+	System.out.println("*********************************");
+	System.out.print("Please choose a menu option (1-6): ");
 
-		int choice = Integer.parseInt(inScan.nextLine());
-		return choice;
-	}
+	int choice = Integer.parseInt(inScan.nextLine());
+	return choice;
+}
 ```
 
 ---
@@ -64,19 +64,19 @@ using options `2.` `3.` and `4.`, of which you will have to complete the feature
 for option `4.` by implementing the __`@TODO`__ objective inside the constructor code:
 
 ```java
-	/* TreeFile.java */
+/* TreeFile.java */
 
-	// Inside TreeFile() Constructor
-	case 4:
-	System.out.println("Enter new root's character data:");
-	userInput = inScan.nextLine();
-	/**
-	 * @TODO #1
-	 *
-	 * Create a new node that has the existing tree as its right child
-	 * and assign in to the private bTree property.
-	 */
-	break;
+// Inside TreeFile() Constructor
+case 4:
+System.out.println("Enter new root's character data:");
+userInput = inScan.nextLine();
+/**
+ * @TODO #1
+ *
+ * Create a new node that has the existing tree as its right child
+ * and assign in to the private bTree property.
+ */
+break;
 ```
 
 ---
@@ -90,53 +90,53 @@ and you must complete each feature by implementing the missing __`@TODO`__ objec
 
 
 ```java
-	/* TreeFile.java */
+/* TreeFile.java */
 
-	private BinaryNode<Character> readTree (Scanner file) throws IOException {
-		BinaryNode<Character> result = null;
+private BinaryNode<Character> readTree (Scanner file) throws IOException {
+	BinaryNode<Character> result = null;
 
-		if (file.hasNext()) {
-			String line = file.nextLine();
+	if (file.hasNext()) {
+		String line = file.nextLine();
 
-			if (line.charAt(0) == 'I') { // Internal Node
-				/**
-				 * @TODO #2
-				 *
-				 * Replace null below with a new node and recursively call
-				 * readTree() on its left and right children
-				 */
-				result = null;
-			} else if (line.charAt(0) == 'L') { // Leaf Node
-				result = new BinaryNode<>(line.charAt(2));
-			} else { // NULL child
-				result = null;
-			}
+		if (line.charAt(0) == 'I') { // Internal Node
+			/**
+			 * @TODO #2
+			 *
+			 * Replace null below with a new node and recursively call
+			 * readTree() on its left and right children
+			 */
+			result = null;
+		} else if (line.charAt(0) == 'L') { // Leaf Node
+			result = new BinaryNode<>(line.charAt(2));
+		} else { // NULL child
+			result = null;
 		}
-		return result;
 	}
+	return result;
+}
 ```
 
 ```java
-	/* TreeFile.java */
+/* TreeFile.java */
 
-	private void writeTree (FileWriter file, BinaryNode<Character> root) throws IOException {
-		if (root != null) {
-			if (root.left == null && root.right == null) { // Write Leaf Node
-				/**
-				 * @TODO #3
-				 *
-				 * Write the tree node text line for a Leaf Node and return.
-				 * Ex) "L %root.data%"
-				 */
-			} else { // Write Internal Node
-				file.write("I " + root.data + "\n");
-			}
-			writeTree(file, root.left);
-			writeTree(file, root.right);
-		} else {
-			file.write("N " + "\n"); // Write NULL Child (as "N")
+private void writeTree (FileWriter file, BinaryNode<Character> root) throws IOException {
+	if (root != null) {
+		if (root.left == null && root.right == null) { // Write Leaf Node
+			/**
+			 * @TODO #3
+			 *
+			 * Write the tree node text line for a Leaf Node and return.
+			 * Ex) "L %root.data%"
+			 */
+		} else { // Write Internal Node
+			file.write("I " + root.data + "\n");
 		}
+		writeTree(file, root.left);
+		writeTree(file, root.right);
+	} else {
+		file.write("N " + "\n"); // Write NULL Child (as "N")
 	}
+}
 ```
 
 ## Testing
