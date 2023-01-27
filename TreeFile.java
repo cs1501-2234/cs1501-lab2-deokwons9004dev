@@ -8,6 +8,7 @@ import java.io.*;
 import java.util.*;
 
 public class TreeFile {
+	
 	private BinaryNode<Character> bTree = null;
 	Scanner inScan;
 	Scanner fReader;
@@ -17,42 +18,48 @@ public class TreeFile {
 	public TreeFile() throws IOException {
 		inScan = new Scanner(System.in);
 
-		// Displays menu and read in user selection
-		while(true){
-			switch(menu()){
+		// Displays menu and read in user selection.
+		while (true) {
+			switch (menu()) {
 				case 1:
-				Scanner fileScan = new Scanner(new FileInputStream(readFileName()));
-				bTree = readTree(fileScan);
-				break;
+					Scanner fileScan = new Scanner(new FileInputStream(readFileName()));
+					bTree = readTree(fileScan);
+					break;
+
 				case 2:
-				inorderTraverse(bTree);
-				break;
+					inorderTraverse(bTree);
+					break;
+
 				case 3:
-				System.out.println("Enter new root's character data:");
-				userInput = inScan.nextLine();
-				bTree = new BinaryNode<>(userInput.charAt(0), bTree, null);
-				break;
+					System.out.println("Enter new root's character data:");
+					userInput = inScan.nextLine();
+					bTree = new BinaryNode<>(userInput.charAt(0), bTree, null);
+					break;
+
 				case 4:
-				System.out.println("Enter new root's character data:");
-				userInput = inScan.nextLine();
-				/**
-				 * @TODO #1
-				 *
-				 * Create a new node that has the existing tree as its right child
-				 * and assign in to the private bTree property.
-				 */
-				break;
+					System.out.println("Enter new root's character data:");
+					userInput = inScan.nextLine();
+					/**
+					 * @TODO #1
+					 *
+					 * Create a new node that has the existing tree as its right child
+					 * and assign in to the private bTree property.
+					 */
+					break;
+
 				case 5:
-				FileWriter fileWriter = new FileWriter(readFileName());
-				writeTree(fileWriter, bTree);
-				fileWriter.close();
-				break;
+					FileWriter fileWriter = new FileWriter(readFileName());
+					writeTree(fileWriter, bTree);
+					fileWriter.close();
+					break;
+
 				case 6:
-				inScan.close();
-				System.exit(0);
-				break;
+					inScan.close();
+					System.exit(0);
+					break;
+
 				default:
-				System.out.println("Incorrect option.");
+					System.out.println("Incorrect option.");
 			}
 		}
 	}
