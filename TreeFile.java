@@ -45,6 +45,7 @@ public class TreeFile {
 					 * Create a new node that has the existing tree as its right child
 					 * and assign in to the private bTree property.
 					 */
+					bTree = new BinaryNode<>(userInput.charAt(0), null, bTree);
 					break;
 
 				case 5:
@@ -118,7 +119,7 @@ public class TreeFile {
 				 * Replace null below with a new node and recursively call
 				 * readTree() on its left and right children
 				 */
-				result = null;
+				result = new BinaryNode<>(line.charAt(2), readTree(file), readTree(file));;
 			} else if (line.charAt(0) == 'L') { // Leaf Node
 				result = new BinaryNode<>(line.charAt(2));
 			} else { // NULL child
@@ -144,6 +145,8 @@ public class TreeFile {
 				 * Write the tree node text line for a Leaf Node and return.
 				 * Ex) "L %root.data%"
 				 */
+				file.write("L " + root.data + "\n");
+				return;
 			} else { // Write Internal Node
 				file.write("I " + root.data + "\n");
 			}
